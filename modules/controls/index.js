@@ -1,4 +1,4 @@
-let inspectVar; //? to use to inspect a variable when you press a mouse button
+let inspectVar; //? to use to inspect an object when you press a mouse button
 let mouse = {
 	pos: new Coord(),
 	btn: {
