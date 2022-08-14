@@ -1,6 +1,11 @@
 # NPM
-npm modules by @gandolphinnn
+npm modules
 
 PUBLISHED:
 * controls
 * math
+
+PRIORITIES:
+* graphics2
+* dates
+* rigid2
