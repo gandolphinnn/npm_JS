@@ -1,3 +1,4 @@
+# Controls
 Easily access input data such as mouse button status, mouse position and key status independently.
 
 A table with every key code is provided in the html file "key code table.html".
