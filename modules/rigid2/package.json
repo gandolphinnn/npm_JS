@@ -1,0 +1,11 @@
+{
+  "name": "@gandolphinnn/rigid2",
+  "version": "1.0.0",
+  "description": "canvas 2D rigid bodies: circle and retangle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gandolphinnn",
+  "license": "ISC"
+}
