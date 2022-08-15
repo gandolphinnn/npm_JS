@@ -61,20 +61,20 @@ const drawF = {
 	circle: (coord, radius, action = '') => {
 		ctx.beginPath();
 		ctx.arc(coord.x, coord.y, radius, 0, Math.PI * 2);
-		if (action == '' || action == 'fill') {
+		if (action == '' || action == 'fill' || action == 'f') {
 			ctx.fill();
 		}
-		if (action == '' || action == 'stroke') {
+		if (action == '' || action == 'stroke' || action == 's') {
 			ctx.stroke();
 		}
 	},
 	rectV: (coord, width, length, action = '') => { //? rect with lines parallel to screen
 		ctx.beginPath();
 		ctx.rect(coord.x, coord.y, width, length);
-		if (action == '' || action == 'fill') {
+		if (action == '' || action == 'fill' || action == 'f') {
 			ctx.fill();
 		}
-		if (action == '' || action == 'stroke') {
+		if (action == '' || action == 'stroke' || action == 's') {
 			ctx.stroke();
 		}
 	},
@@ -85,10 +85,10 @@ const drawF = {
 		let w = Math.abs(coord1.x-coord2.x);
 		let h = Math.abs(coord1.y-coord2.y);		
 		ctx.rect(x, y, w, h);
-		if (action == '' || action == 'fill') {
+		if (action == '' || action == 'fill' || action == 'f') {
 			ctx.fill();
 		}
-		if (action == '' || action == 'stroke') {
+		if (action == '' || action == 'stroke' || action == 's') {
 			ctx.stroke();
 		}
 	},
