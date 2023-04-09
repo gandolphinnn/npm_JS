@@ -1,4 +1,4 @@
-const unixF = {
+const UnixF = {
 	/**
 	 * Convert from unix timestamp to date.
 	 * @param {number} timestamp The unix timestamp.
@@ -8,7 +8,7 @@ const unixF = {
 	 * * for example, toDate(1, 'yy.mm/a-d') will return '70.01/a-1'
 	 * @return {string} The date
 	 */
-	toDate: (timestamp, format = 'dd/mm/yyyy') => {
+	ToDate: (timestamp, format = 'dd/mm/yyyy') => {
 		let date = new Date(timestamp);
 		let result = '';
 		let val = {
@@ -62,7 +62,7 @@ const unixF = {
 	 * * for example, toTime(5, 'hh.mm/a-s') will return '' IN THE GMT TIMEZONE
 	 * @return {string} The date
 	 */
-/* 	toTime: (timestamp, format = 'hh:mm:ss') => {
+/* 	ToTime: (timestamp, format = 'hh:mm:ss') => {
 		let time = new Date(timestamp);
 		console.log(time);
 		let result = '';
@@ -115,7 +115,7 @@ const unixF = {
 	 * * 'f' or 'full' (default) for the full day name or the number of letters you want to output
 	 * @return {string} The week day
 	 */
-	toWeekDay: (timestamp, l = -1) => {
+	ToWeekDay: (timestamp, l = -1) => {
 		let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		if (l == -1) {
 			return days[new Date(timestamp).getDay()];

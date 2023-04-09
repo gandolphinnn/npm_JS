@@ -1,33 +1,32 @@
-class RigidRect{
-	constructor(coord, degr, width, length, color = 'black') {
+/*class BoxCollider2 {
+	constructor(coord, degr, width, length) {
 		this.coord = coord;
 		this.degr = degr;
 		this.width = (width == null || width < 0)? 0 : width;
 		this.length = (length == null || length < 0)? 0 : length;
 		this.diagonal = Math.sqrt(this.width**2 + this.length**2);
 		this.corners = new Array();
-		this.color = color;
 		this.calcCorners();
 	}
 	calcCorners() {
 		this.corners = new Array();
-		this.corners.push(new Coord(this.coord.x + mathF.cosD(this.degr)*(this.length/2) + mathF.cosD(this.degr+90)*(this.width/2),
-							this.coord.y - mathF.sinD(this.degr)*(this.length/2) - mathF.sinD(this.degr+90)*(this.width/2)));
+		this.corners.push(new Coord(this.coord.x + MathF.cosD(this.degr)*(this.length/2) + MathF.cosD(this.degr+90)*(this.width/2),
+							this.coord.y - MathF.sinD(this.degr)*(this.length/2) - MathF.sinD(this.degr+90)*(this.width/2)));
 		if (this.width > 0) {
-			this.corners.push(new Coord(this.coord.x + mathF.cosD(this.degr)*(this.length/2) - mathF.cosD(this.degr+90)*(this.width/2),
-							this.coord.y - mathF.sinD(this.degr)*(this.length/2) + mathF.sinD(this.degr+90)*(this.width/2)));
+			this.corners.push(new Coord(this.coord.x + MathF.cosD(this.degr)*(this.length/2) - MathF.cosD(this.degr+90)*(this.width/2),
+							this.coord.y - MathF.sinD(this.degr)*(this.length/2) + MathF.sinD(this.degr+90)*(this.width/2)));
 		}
 		if (this.length > 0) {
-			this.corners.push(new Coord(this.coord.x - mathF.cosD(this.degr)*(this.length/2) - mathF.cosD(this.degr+90)*(this.width/2),
-							this.coord.y + mathF.sinD(this.degr)*(this.length/2) + mathF.sinD(this.degr+90)*(this.width/2)));
+			this.corners.push(new Coord(this.coord.x - MathF.cosD(this.degr)*(this.length/2) - MathF.cosD(this.degr+90)*(this.width/2),
+							this.coord.y + MathF.sinD(this.degr)*(this.length/2) + MathF.sinD(this.degr+90)*(this.width/2)));
 			if (this.width > 0) {
-				this.corners.push(new Coord(this.coord.x - mathF.cosD(this.degr)*(this.length/2) + mathF.cosD(this.degr+90)*(this.width/2),
-								this.coord.y + mathF.sinD(this.degr)*(this.length/2) - mathF.sinD(this.degr+90)*(this.width/2)));
+				this.corners.push(new Coord(this.coord.x - MathF.cosD(this.degr)*(this.length/2) + MathF.cosD(this.degr+90)*(this.width/2),
+								this.coord.y + MathF.sinD(this.degr)*(this.length/2) - MathF.sinD(this.degr+90)*(this.width/2)));
 			}
 		}
 	}
 	collision(rBody) {
-		if (mathF.parentClass(rBody) == 'RigidRect') {
+		if (MathF.parentClass(rBody) == 'RigidRect') {
 			let hitPoints = new Array(), line1, line2;
 			for (let i = 0; i < this.corners.length; i++) {
 				line1 = new Line(this.corners[i], this.corners[(i+1) % this.corners.length]);
@@ -42,17 +41,17 @@ class RigidRect{
 				return false;
 			return hitPoints;
 		}
-		else if(mathF.parentClass(rBody) == 'RigidCirc') {
+		else if(MathF.parentClass(rBody) == 'RigidCirc') {
 			console.log('Work In Progress');
 			return false;
 		}
 	}
 	bounce(mirrorDegr) {
-		this.degr = mathF.formA(mirrorDegr*2-this.degr+180);
+		this.degr = MathF.formA(mirrorDegr*2-this.degr+180);
 	}
 	showHitbox() {
 		let color = ctx.strokeStyle;
-		ctx.strokeStyle = this.color;
+		ctx.strokeStyle = 'black';
 		for (let i = 0; i < this.corners.length; i++) {
 			drawF.line(this.corners[i], this.corners[(i+1)%this.corners.length]);
 		}
@@ -60,7 +59,7 @@ class RigidRect{
 		ctx.strokeStyle = color;
 	}
 }
-class RigidCirc {
+class SphereCollider2 {
 	constructor(coord, degr, radius, color= 'black') {
 		this.coord = coord;
 		this.degr = degr;
@@ -68,11 +67,11 @@ class RigidCirc {
 		this.color = color
 	}
 	collision(rBody) {
-		if (mathF.parentClass(rBody) == 'RigidRect') {
+		if (MathF.parentClass(rBody) == 'RigidRect') {
 			console.log('Work In Progress');
 			return false;
 		}
-		else if(mathF.parentClass(rBody) == 'RigidCirc') {
+		else if(MathF.parentClass(rBody) == 'RigidCirc') {
 			let hitPoints = new Array();
 			let d = Math.sqrt((this.coord.x - rCirc.coord.x) ** 2 + (this.coord.y - rCirc.coord.y) ** 2);
 			if (d > this.radius + rCirc.radius) {
@@ -90,7 +89,7 @@ class RigidCirc {
 		}
 	}
 	bounce(mirrorDegr) {
-		this.degr = mathF.formA(mirrorDegr*2-this.degr+180);
+		this.degr = MathF.formA(mirrorDegr*2-this.degr+180);
 	}
 	showHitbox() {
 		let color = ctx.strokeStyle;
@@ -100,24 +99,14 @@ class RigidCirc {
 		ctx.strokeStyle = color;
 	}
 }
-const rigidF = {
+const RigidF = {
 	bounce: (rBody, mirrorDegr) => {
-		rBody.degr = mathF.formA(mirrorDegr*2-rBody.degr+180);
+		rBody.degr = MathF.formA(mirrorDegr*2-rBody.degr+180);
 	},
-	/**
-	 * Convert from unix timestamp to time.
-	 * @param {RigirRect | RigidCirc} rBody1 The first rigidBody.
-	 * @param {RigirRect | RigidCirc} rBody2 The second rigidBody.
-	 * * use 's' for seconds, 'm' for minutes and 'h' for hours, double that to get the extended value
-	 * @return {boolean | array} 
-	 * * false if they don't collide
-	 * * an array with the coordinates of the intersections
-	 * * an empty array if they are one inside the other without intersection 
-	 */
 	collision(rBody1, rBody2) {
 		let hitPoints = new Array();
 		//* rect and rect
-		if (mathF.parentClass(rBody1) == 'RigidRect' && mathF.parentClass(rBody2) == 'RigidRect') {
+		if (MathF.parentClass(rBody1) == 'RigidRect' && MathF.parentClass(rBody2) == 'RigidRect') {
 			let line1, line2;
 			for (let i = 0; i < rBody1.corners.length; i++) { //? get intersections
 				line1 = new Line(rBody1.corners[i], rBody1.corners[(i+1) % rBody1.corners.length]);
@@ -133,7 +122,7 @@ const rigidF = {
 			}
 		}
 		//* circ and circ
-		else if (mathF.parentClass(rBody1) == 'RigidCirc' && mathF.parentClass(rBody2) == 'RigidCirc') {
+		else if (MathF.parentClass(rBody1) == 'RigidCirc' && MathF.parentClass(rBody2) == 'RigidCirc') {
 			let d = Math.sqrt((rBody1.coord.x - rBody2.coord.x) ** 2 + (rBody1.coord.y - rBody2.coord.y) ** 2);
 			if (d > rBody1.radius + rBody2.radius) { //? no intersections and outside
 				return false;			
@@ -150,8 +139,8 @@ const rigidF = {
 		//* circ and rect
 		else {
 			//? define which one is rect and which one is circ
-			let	rRect = mathF.parentClass(rBody1) == 'RigidRect'? rBody1 : rBody2;
-			let	rCirc = mathF.parentClass(rBody1) == 'RigidCirc'? rBody1 : rBody2;
+			let	rRect = MathF.parentClass(rBody1) == 'RigidRect'? rBody1 : rBody2;
+			let	rCirc = MathF.parentClass(rBody1) == 'RigidCirc'? rBody1 : rBody2;
 			if (coordF.dist(rRect.coord, rCirc.coord) > rRect.diagonal/2+rCirc.radius) { //? too far to possibly intersect, avoid useless computation
 				return false;
 			}
@@ -190,12 +179,12 @@ const rigidF = {
 		}
 		return hitPoints;
 	},
-	/* snap: (rBody, fixedBody) => {
-		if (rigidF.collision(rBody, fixedBody)) {
+	snap: (rBody, fixedBody) => {
+		if (RigidF.collision(rBody, fixedBody)) {
 
 		}
 	},
 	rayCast(coord, degr, rBodies) {
 
-	} */
-}
+	}
+}*/
